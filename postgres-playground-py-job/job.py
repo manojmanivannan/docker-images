@@ -96,7 +96,7 @@ for i in range(user_range):
 for i in range(product_range):
     product_id = i+1
     product_name = fake.unique.first_name()
-    category = fake.word(ext_word_list=['Electronics', 'Clothing', 'Books', 'Toys'])
+    category = fake.word(ext_word_list=['Electronics', 'Clothing', 'Books', 'Toys', 'Hobby','Vegetables','Fruits','Poultry','Meat','Frozen-Foods'])
     price = round(random.uniform(10, 500), 2)
     cursor.execute(f'INSERT INTO {schema_name}.Products (product_id, product_name, category, price) VALUES (%s, %s, %s, %s)', (product_id, product_name, category, price))
 
