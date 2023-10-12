@@ -27,6 +27,7 @@ jobs:
           TOKEN: ${{ secrets.DOCKER_REPO_POSTGRES_FETCH_PAT }}
         run: |
           curl -H "Authorization: token ${TOKEN}" https://raw.githubusercontent.com/manojmanivannan/postgres-playground/master/dataset/job.py > ./postgres-playground-py-job/job.py
+          ls ./postgres-playground-py-job/
       -
         name: Build and push Postgres Playground Py
         uses: docker/build-push-action@v5
