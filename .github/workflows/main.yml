@@ -27,4 +27,4 @@ jobs:
         with:
           context: postgres-playground-py-job/
           push: true
-          tags: manojmanivannan18/app:latest
+          tags: manojmanivannan18/postgres-playground-py:latest
