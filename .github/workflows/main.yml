@@ -26,6 +26,9 @@ jobs:
           current_date_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           time_sec_diff=$(( $(date -d "$current_date_time" -u +%s) - $(date -d "$commit_date_time" -u +%s) ))
           time_min_diff=$((time_sec_difference % 3600 / 60))
+          echo "Last commit on postgres-playground was at $current_date_time"
+          echo "Current datetime $current_date_time"
+          echo "$time_min_diff minutes passed"
           if [ "$time_min_diff" -ge 30 ]; then 
             echo "Commits were made more than 30 minutes ago, proceeding..."
             echo "::set-output name=conditions::true"
