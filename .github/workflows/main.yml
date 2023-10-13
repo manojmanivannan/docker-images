@@ -14,7 +14,7 @@ jobs:
       - name: Check for Changes in Another Repository
         id: conditions
         env:
-          GITHUB_TOKEN:${{ secrets.DOCKER_REPO_POSTGRES_FETCH_PAT }} # Personal Access Token with repo scope
+          GITHUB_TOKEN: ${{ secrets.DOCKER_REPO_POSTGRES_FETCH_PAT }} # Personal Access Token with repo scope
         run: |
           # Trigger a repository dispatch event in the target repository
           # Replace 'owner/repo' with the actual repository you want to monitor
