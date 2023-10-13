@@ -4,7 +4,7 @@ on:
   # push:
   #   branches: [ master ]
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '* */2 * * *'
   # push:
   #   branches:
   #     - '*' # Trigger on all branches
@@ -30,11 +30,11 @@ jobs:
           echo "Last commit on postgres-playground was at $current_date_time"
           echo "Current datetime $current_date_time"
           echo "$time_min_diff minutes passed"
-          if [ "$time_min_diff" -ge 30 ]; then 
-            echo "Commits were made more than 30 minutes ago, proceeding..."
+          if [ "$time_min_diff" -le 120 ]; then 
+            echo "Commits were made less than 120 minutes ago, proceeding..."
             echo "::set-output name=conditions::true"
           else 
-            echo "Commits were made less than 30 minutes ago, Skipping next job"
+            echo "Commits were made more than 120 minutes ago, Skipping next job"
             echo "::set-output name=conditions::false"
           fi
       -
