@@ -1,9 +1,13 @@
 name: ci
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '*/15 * * * *'
-
+  push:
+    branches:
+      - '*' # Trigger on all branches
+      
 jobs:
   check-file-changes:
     runs-on: ubuntu-latest
