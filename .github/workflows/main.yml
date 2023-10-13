@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branches: [ auto-workflow ]
+    branches: [ master ]
   schedule:
     - cron: '*/5 * * * *'
   # push:
@@ -10,13 +10,13 @@ on:
   #     - '*' # Trigger on all branches
       
 jobs:
-  check-file-changes:
+  build-images:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Check for Changes in Another Repository
+      - name: Check for Changes in manojmanivannan/postgres-playground
         id: conditions
         env:
           GITHUB_TOKEN: ${{ secrets.DOCKER_REPO_POSTGRES_FETCH_PAT }} # Personal Access Token with repo scope
