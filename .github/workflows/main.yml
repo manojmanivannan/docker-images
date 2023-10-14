@@ -4,7 +4,7 @@ on:
   # push:
   #   branches: [ master ]
   schedule:
-    - cron: '* */2 * * *'
+    - cron: '0 0 * * *'
   # push:
   #   branches:
   #     - '*' # Trigger on all branches
@@ -21,20 +21,27 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DOCKER_REPO_POSTGRES_FETCH_PAT }} # Personal Access Token with repo scope
         run: |
-          # Trigger a repository dispatch event in the target repository
-          # Replace 'owner/repo' with the actual repository you want to monitor
+          # Get the last commit timestamp of the repo manojmanivannan/postgres-playground
           commit_date_time=$(curl -s -L -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -H "X-Github-Api-Version 2022-11-28" https://api.github.com/repos/manojmanivannan/postgres-playground/commits | jq '.[0].commit.author.date' | sed 's/"//g')
+
+          # Get the current timestamp
           current_date_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Get the time difference in seconds
           time_sec_diff=$(( $(date -d "$current_date_time" -u +%s) - $(date -d "$commit_date_time" -u +%s) ))
+
+          # Get the time difference in minutes
           time_min_diff=$(( $time_sec_diff % 3600 ))
+
           echo "Last commit on postgres-playground was at $current_date_time"
           echo "Current datetime $current_date_time"
           echo "$time_min_diff minutes passed"
-          if [ "$time_min_diff" -le 120 ]; then 
-            echo "Commits were made less than 120 minutes ago, proceeding..."
+          
+          if [ "$time_min_diff" -le 1440 ]; then 
+            echo "Commits were made less than 1 day ago, proceeding..."
             echo "::set-output name=conditions::true"
           else 
-            echo "Commits were made more than 120 minutes ago, Skipping next job"
+            echo "Commits were made more than 1 day ago, Skipping next job"
             echo "::set-output name=conditions::false"
           fi
       -
