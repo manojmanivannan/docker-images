@@ -31,7 +31,7 @@ jobs:
           time_sec_diff=$(( $(date -d "$current_date_time" -u +%s) - $(date -d "$commit_date_time" -u +%s) ))
 
           # Get the time difference in minutes
-          time_min_diff=$(( $time_sec_diff % 3600 ))
+          time_min_diff=$(( $time_sec_diff / 60 ))
 
           echo "Last commit on postgres-playground was at $commit_date_time"
           echo "Current datetime $current_date_time"
