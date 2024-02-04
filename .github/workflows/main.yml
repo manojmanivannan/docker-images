@@ -84,7 +84,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push Postgres Playground Py
+      - name: Build and push Python St
         uses: docker/build-push-action@v5
         with:
           context: liveisstracker-app-base/
