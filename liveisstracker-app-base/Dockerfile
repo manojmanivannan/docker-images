@@ -4,7 +4,6 @@ RUN apt-get update && apt-get install -y gcc libgeos-dev
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
 RUN pip3 install pytest
-RUN pip3 install --no-cache-dir https://github.com/matplotlib/basemap/archive/master.zip
 
 RUN apt-get clean && apt-get autoclean
 # Delete index files we don't need anymore:
