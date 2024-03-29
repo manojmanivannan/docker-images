@@ -8,6 +8,8 @@ on:
   # push:
   #   branches:
   #     - '*' # Trigger on all branches
+  workflow_dispatch:
+    
       
 jobs:
   build-images:
