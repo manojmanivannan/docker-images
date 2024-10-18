@@ -9,3 +9,4 @@ plotly
 plotly-express
 kaleido
 pandas
+basemap
